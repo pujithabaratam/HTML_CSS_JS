@@ -59,5 +59,21 @@ body {
     opacity: 1;
     transition: ease-in-out 0.3s;
  }
-
+#tasks{
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+    background-color: aliceblue;
+    padding: 6px 20px;
+}
+.task{
+    border-radius: 5px;
+    border: 1px solid #939697;
+    cursor: pointer;
+    background-color: lightslategray;
+    height: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
