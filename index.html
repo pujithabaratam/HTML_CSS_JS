@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css Files/style.css">
+</head>
+
+<body>
+    <div class="container" id="resume-form">
+        <h1 class="text-center my-4 display-1">Resume Builder</h1>
+        <p class="text-center lead">Free online resume maker,Build your brand-new resume in as little as 5 minutes</p>
+
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="text-center">Personal Details</h3>
+
+                <div class="form-group mt-3">
+                    <label for="full-name">Name</label>
+                    <input type="text" id="full-name" class="form-control" required="true">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="dob">DOB</label>
+                    <input type="date" id="dob" class="form-control" required="true">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="phno">Phone Number</label>
+                    <input type="text" id="phno" class="form-control" required="true">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="xyz@domain.com" required="true" class="form-control">
+                    <div id="email-help" class="form-text">Never share email with anyone</div>
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="address">Address</label>
+                    <textarea class="form-control" id="address" cols="10" rows="3" placeholder="Present Address"
+                        required="true"></textarea>
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="profile-img">Profile Picture</label>
+                    <input type="file" id="profile-img" accept="image/*" class="form-control"
+                        placeholder="Upload your profile" onchange="previewImage(event)">
+                    <img src="#" alt="Upload Picture" style="display: none;" id="image-preview" class="img-thumbnail">
+                </div>
+
+
+                <h4 class="my-3">Links</h4>
+
+                <div class="form-group">
+                    <label for="Linkedin">LinkedIn <i class="fa-brands fa-linkedin"></i> </label>
+                    <input type="text" id="Linkedin" class="form-control" placeholder="Enter your Linkedin URL">
+                </div>
+
+                <div class="form-group">
+                    <label for="github">GitHub <i class="fa-brands fa-github"></i> </label>
+                    <input type="text" id="github" class="form-control" placeholder="Enter your Github URL">
+                </div>
+
+            </div>
+
+            <div class="col-md-7" id="proffesional-details-form">
+                <h3 class="text-center">Profesional Details</h3>
+                <div class="form-group mt-2">
+                    <label for="objective">Objective</label>
+                    <textarea placeholder="write a short note on your objective" id="objective"
+                        class="form-control"></textarea>
+                </div>
+
+                <div id="add-skill-input-div" class="mt-2 text-start">
+                    <label for="skill-input">Skills</label>
+                    <div class="input-group" id="skill-input-section">
+                        <input type="text" class="form-control" id="skill-input" placeholder="Enter your skill">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="skill-input-button"
+                                onclick="addSkill()">ADD<i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="" id="skills">
+
+                    </div>
+
+                    <div id="experience-div" class="form-group mt-2">
+                        <label for="experience">Experience</label>
+                        <textarea id="experience-1" cols="30" rows="3" placeholder="enter your work experience-1"
+                            class="form-control we-field"></textarea>
+
+                        <div class="d-grid d-md-flex gap-2 mt-2 justify-content-md-end" id="we-btns-div">
+                            <button class="btn btn-primary" id="we-add-btn" onclick="addworkExperience()">Add
+                                Experience</button>
+                            <button class="btn btn-danger" id="we-del-btn"
+                                onclick="removeworkExperience()">Remove</button>
+                        </div>
+                    </div>
+
+
+                    <div id="education-div" class="form-group mt-2">
+                        <label for="education">Education</label>
+                        <textarea id="education-1" cols="30" rows="3" placeholder="enter your acdameic qualification-1"
+                            class="form-control ed-field"></textarea>
+
+                        <div class="d-grid d-md-flex gap-2 mt-2 justify-content-md-end" id="ed-btns-div">
+                            <button class="btn btn-primary" id="ed-add-btn" onclick="addEducation()">Add
+                                Experience</button>
+                            <button class="btn btn-danger" id="ed-del-btn" onclick="removeEducation()">Remove</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="container text-center mt-4 mb-3 submit-btn">
+            <button onclick="startOver()" class="btn btn-outline-secondary">Reset<i class="fa-solid fa-rotate-right"></i></button>
+            <button onclick="generateResume()" class="btn btn-outline-success">Generate Resume<i class="fa-solid fa-wand-magic-sparkles"></i></button>
+        </div>
+
+    </div>
+
+
+    <div class="container mt-2 border rounded" id="resume-template">
+        <div class="row mx-3 my-3">
+            <div zclass="col-md-4 background text-center">
+                <img src="./img/img.png" alt="default picture" class="img-thumbnail text-center" id="profile-img-template">
+
+                <div class="container">
+                    <h3 id="full-nametemplate">Amaravathi</h3>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr class="text-start">
+                                <th>DOB</th>
+                                <td id="dob-template" class="text-start">15-6-2005</td>
+                            </tr>
+                            <tr class="text-start">
+                                <th>Phone</th>
+                                <td id="phno-template" class="text-start">9876543210</td>
+                            </tr>
+                            <tr class="text-start">
+                                <th>Email</th>
+                                <td id="email-template" class="text-start">example@domaim.com</td>
+                            </tr>
+                            <tr class="text-start">
+                                <th>Address</th>
+                                <td id="address-template" class="text-start">Vishakhapatnam</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <h5 class="text-start">Links</h5>
+                <div class="container">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr class="text-start">
+                                <th>Linkedin</th>
+                                <td><a id="Linkedin-template" href="#">www.linkedin.com</a></td>
+                            </tr>
+
+                            <tr class="text-start">
+                                <th>Github</th>
+                                <td><a id="Github-template" href="#">www.github.com</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+           </div>
+
+            <div class="col-md-8">
+                <div class="card mt-2">
+                    <div class="card-header theme">
+                        <h5>Objective</h5>
+                    </div>
+                    <div class="card-body">
+                        <p id="objective-template">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus laudantium doloremque dolores
+                           non. Natus pariatur, harum non eius vero facilis quas quo itaque ipsa quae commodi quod ad
+                           perspiciatis debitis.</p>
+                    </div>
+               </div>
+
+                <div class="card mt-4">
+                    <div class="card-header theme">
+                        <h5>Skills</h5>
+                    </div>
+                    <div class="card-header" id="skill-template-div">
+                        <span class="badge rounded-pill bg-secondary skill-pill">Java</span>
+                        <span class="badge rounded-pill bg-secondary skill-pill">Java Script</span>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header theme">
+                        <h5>Work Experience</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul id="we-template">
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ea molestiae, mollitia sit
+                            cum tempore illo quidem voluptatem quibusdam, quasi ipsum a quas praesentium atque quia
+                            veritatis consectetur. Illum, nisi.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ea molestiae, mollitia sit
+                            cum tempore illo quidem voluptatem quibusdam, quasi ipsum a quas praesentium atque quia
+                            veritatis consectetur. Illum, nisi.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ea molestiae, mollitia sit
+                            cum tempore illo quidem voluptatem quibusdam, quasi ipsum a quas praesentium atque quia
+                            veritatis consectetur. Illum, nisi.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header theme">
+                        <h5>Academic Qualification</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul id="ed-template">
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ea molestiae, mollitia sit
+                            cum tempore illo quidem voluptatem quibusdam, quasi ipsum a quas praesentium atque quia
+                            veritatis consectetur. Illum, nisi.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ea molestiae, mollitia sit
+                            cum tempore illo quidem voluptatem quibusdam, quasi ipsum a quas praesentium atque quia
+                            veritatis consectetur. Illum, nisi.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ea molestiae, mollitia sit
+                            cum tempore illo quidem voluptatem quibusdam, quasi ipsum a quas praesentium atque quia
+                            veritatis consectetur. Illum, nisi.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3 mb-4 text-center" id="save-btn">
+        <button class="btn btn-outline-secondary" onclick="startOver()">Start Over</button>
+        <button class="btn btn-outline-secondary" onclick="printResume('resume-template')">Print Resume</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="./JS Files/script.js"></script>
+</body>
+
+</html>
